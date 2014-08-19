@@ -1,0 +1,29 @@
+<%= link_to 'Back', articles_path %>
+
+<h1><%= @article.title %></h1>
+<p>By <%= link_to @article.author.name, @article.author %></p>
+<div class="article content">
+	<p><%= @article.body %></p>
+	<%= link_to 'Edit', edit_article_path(@article) %> 
+	<%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+
+<!-- 3. Change the code below to render a partial for a collection -->
+
+<% Comment.where(article_id: @article.id).each do |comment| %> <!-- Database query -->
+	<div class="comment content">
+		<%= comment.body %>
+		<%= link_to 'Edit', edit_comment_path(comment) %> 
+		<%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+	</div>
+<% end %>
+
+<!-- 1. Change the code below to render a partial for the comment form; send a local variable for comment -->
+<!-- 2. Then, make it accessible as a shared partial -->
+
+<%= form_for(@comment) do |f| %>
+  <%= f.text_area :body, placeholder: "type your comment here" %><br>
+  <%= f.hidden_field :article_id%>
+  <%= f.submit %>
+<% end %>
+
