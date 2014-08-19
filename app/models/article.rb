@@ -3,4 +3,5 @@ class Article < ActiveRecord::Base
 	belongs_to :author
 
 	scope :current, -> { where(current: true) }
+	scope :retired, -> { where(current: false) }
 end
