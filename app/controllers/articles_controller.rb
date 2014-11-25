@@ -1,5 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  include ArticlesHelper
+
+  def index
+    @articles = Article.all
+  end
 
   def show
     @comment = @article.comments.new
@@ -10,6 +15,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
   end
 
   def create
@@ -36,10 +42,11 @@ class ArticlesController < ApplicationController
 
   private
   def set_article
-    @article = Article.includes(:author).find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def article_params
     params.require(:article).permit(:title, :body, :author_id)
   end
+
 end

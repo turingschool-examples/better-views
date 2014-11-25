@@ -11,20 +11,10 @@
 <!-- 1. Fix the database query in view. This will blow up unless we account for the unsaved comment -->
 <!-- 4. (Back to keynote). Change the code below to render a partial for a collection -->
 
-<% Comment.where(article_id: @article.id).each do |comment| %>
-	<div class="comment content">
-		<%= comment.body %>
-		<%= link_to 'Edit', edit_comment_path(comment) %> 
-		<%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-	</div>
-<% end %>
+<%= render partial: @article.comments %>
 
 <!-- 2. Change the code below to render a partial for the comment form; send a local variable for comment -->
 <!-- 3. (Back to keynote) Then, make it accessible as a shared partial -->
 
-<%= form_for(@comment) do |f| %>
-  <%= f.text_area :body, placeholder: "type your comment here" %><br>
-  <%= f.hidden_field :article_id%>
-  <%= f.submit %>
-<% end %>
+<%= render partial: 'shared/comment_form', locals: { comment: @comment } %>
 

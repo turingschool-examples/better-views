@@ -4,4 +4,5 @@ class Article < ActiveRecord::Base
 
 	scope :current, -> { where(current: true) }
 	scope :retired, -> { where(current: false) }
+
 end

@@ -1,11 +1,9 @@
 <h1>All Articles</h1>
 
-<% Article.all.each do |article| %> <!-- Database query --> 
-  <% if article.current?  %> <!-- Logic in view (not always bad, but we can take care of this example in controller) --> 
-    <div>
-      <%= styled_link_to_article(article) %>
-    </div>
-  <% end %>
+<% @articles.each do |article| %> <!-- Database query --> 
+  <div>
+    <%= styled_link_to_article(article) %>
+  </div>
 <% end %>
 
 <br>
