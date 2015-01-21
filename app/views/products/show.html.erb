@@ -1,0 +1,88 @@
+<h1>Rails Helper Method Examples</h1>
+<h3>DISCLAIMER: The purpose of this page is to show many types of Rails helpers at the same time (not necessarily good code) </h3>
+
+<hr>
+
+<p>
+  <strong>pluralize(@products.count, 'product')</strong>
+  <%= pluralize(@products.count, 'product') %>
+</p>
+
+<hr>
+
+<p>
+  <strong>image_tag @product.image:</strong>
+  <%= image_tag @product.image %>
+</p>
+
+<hr>
+
+<p>
+  <strong>time_ago_in_words(@product.created_at):</strong>
+  <%= time_ago_in_words(@product.created_at) %>
+</p>
+
+<hr>
+
+<p>
+  <strong>number_to_currency(@product.price / 100.00)</strong>
+  <%= number_to_currency(@product.price / 100.00) %>
+</p>
+
+<hr>
+
+<p>
+  <strong>number_to_percentage(42, precision: 1)</strong>
+  <%= number_to_percentage(42, precision: 1) %>
+</p>
+
+<hr>
+
+<p> 
+  <strong>date_select :product, :updated_at</strong>
+  <%= date_select :product, :updated_at %> <br>
+  <strong>check_box("post", "validated")</strong>
+  <%= check_box("post", "validated") %> <br>
+  <strong>password_field_tag :some_attribute</strong>
+  <%= password_field_tag :some_attribute %> <br>
+  <strong>select_tag 'product', options_from_collection_for_select(@products, 'id', 'name')</strong>
+  <%= form_tag products_path do %>
+    <%= select_tag 'product', options_from_collection_for_select(@products, 'id', 'name') %>
+  <% end %>
+</p>
+
+<hr>
+
+<table>
+  <strong>cycle</strong>
+ <% @products.each do |product| %>
+   <tr class="<%= cycle('odd', 'even') %>">
+     <td><%= product.name %></td>
+   </tr>
+ <% end %>
+</table>
+
+<hr>
+
+<p>
+  <strong>button_to "Broken Button. Don't click me!", products_path </strong>
+  <%= button_to "Broken Button. Don't click me!", products_path %>
+</p>
+
+<hr>
+
+<p>
+  <strong>link_to 'Index', products_path</strong> <br>
+  <%= link_to 'Index', products_path %>
+</p>
+
+<hr>
+
+<p>
+  <strong>flash.each do |name, msg| <br>
+  content_tag :div, msg, :id => "flash_#{name}" <br>
+end </strong>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash-#{name}" %>
+<% end %>
+</p>

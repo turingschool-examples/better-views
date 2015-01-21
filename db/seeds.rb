@@ -8,7 +8,7 @@ end
 	selected_author = Author.all.sample
 	status = [true, false].sample
 	Article.create(author_id: selected_author.id, 
-								 title: Faker::Commerce.product_name, 
+								 title: Faker::Company.catch_phrase, 
 								 body: Faker::Lorem.paragraph(15),
 								 current: status)
 end
@@ -17,4 +17,10 @@ end
 	selected_article = Article.all.sample
 	Comment.create(article_id: selected_article.id,
 								 body: Faker::Lorem.paragraph(2))
+end
+
+20.times do
+	Product.create(name: Faker::Commerce.product_name,
+								 price: Faker::Number.number([4,5,6].sample),
+								 image: Faker::Avatar.image)
 end

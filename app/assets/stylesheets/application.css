@@ -36,3 +36,11 @@ body {
 	font-weight: bold;
 	font-style: italic;
 }
+
+.odd {
+  background-color: grey;
+}
+
+#flash-notice {
+  color: green;
+}
